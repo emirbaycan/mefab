@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <!-- Badge Background -->
+    <path
+        android:fillColor="?attr/colorPrimary"
+        android:pathData="M4,16 h24 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-24 a4,4 0 0 1 -4,-4 v-8 a4,4 0 0 1 4,-4 z"/>
+    <!-- LIVE Text: Basitleştirilmiş, 4 çubuk ile -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M8,24 h2 v4 h-2z
+                          M12,24 h2 v4 h-2z
+                          M16,24 h2 v4 h-2z
+                          M20,24 h2 v4 h-2z"/>
+</vector>

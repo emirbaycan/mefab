@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="container_size">200dp</dimen>
+    <dimen name="floating_btn_icon_start_stop">35dp</dimen>
+    <dimen name="sr_list_btn">40dp</dimen>
+    <dimen name="sr_list_btn_icon">25dp</dimen>
+</resources>

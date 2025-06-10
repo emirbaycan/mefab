@@ -1,0 +1,19 @@
+# Android Studio
+.idea/
+*.iml
+
+# Build
+/build/
+**/build/
+.gradle/
+local.properties
+
+# Keystore files
+*.jks
+
+# Crashlytics
+crashlytics-build.properties
+
+# Others
+.DS_Store
+*.log

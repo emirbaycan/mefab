@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <!-- Brush handle -->
+    <path
+        android:fillColor="?attr/colorPrimary"
+        android:pathData="M9,23 L23,9 L25,11 L11,25 Z" />
+    <!-- Brush bristles -->
+    <path
+        android:fillColor="?attr/colorAccent"
+        android:pathData="M9,23 Q7,27 11,25 Z" />
+</vector>

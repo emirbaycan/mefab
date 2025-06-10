@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fab_record"
+        android:icon="@drawable/icon_capture_start"
+        android:title="Kayıt"/>
+    <item
+        android:id="@+id/fab_brush"
+        android:icon="@drawable/icon_brush"
+        android:title="Brush"/>
+    <item
+        android:id="@+id/fab_screenshot"
+        android:icon="@drawable/btn_screenshot"
+        android:title="Screenshot"/>
+    <item
+        android:id="@+id/fab_live"
+        android:icon="@drawable/icon_live"
+        android:title="Live"/>
+</menu>

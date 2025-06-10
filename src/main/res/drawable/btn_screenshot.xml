@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:height="@dimen/sr_list_btn"
+        android:width="@dimen/sr_list_btn">
+
+        <shape>
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/icon_sr_screenshot"
+        android:height="@dimen/sr_list_btn_icon"
+        android:width="@dimen/sr_list_btn_icon"
+        android:gravity="center"/>
+</layer-list>

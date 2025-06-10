@@ -45,7 +45,7 @@ public object FloatingFabOverlayManager {
     /**
      * Returns the MovableExpandedFloatingActionButton instance if overlay is visible.
      */
-    public fun getOverlayView(): MovableExpandedFloatingActionButton? = fab
+    public fun getFabView(): MovableExpandedFloatingActionButton? = fab
 
     /**
      * Shows the overlay on the screen, creating the view if not already shown.

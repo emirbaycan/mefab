@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fab_record"
-        android:icon="@drawable/icon_capture_start"
+        android:icon="@drawable/icon_record_start"
         android:title="Record"/>
     <item
         android:id="@+id/fab_brush"

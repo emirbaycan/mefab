@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.PopupMenu
+import androidx.annotation.MenuRes
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.doOnPreDraw
@@ -63,8 +64,6 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
                 R.styleable.MovableExpandedFloatingActionButton_closeAfterEdgeFabClick,
                 false
             )
-            val menuId = getResourceId(R.styleable.MovableExpandedFloatingActionButton_edges, 0)
-            generateEdgeFabs(menuId, attrs, defStyleAttr)
         }
 
         // Load MotionScene and initialize constraints after view draw
@@ -81,6 +80,14 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
         this.edgeFabClickListener = listener
     }
 
+    fun setMenu(@MenuRes menuId: Int) {
+        setMenu(menuId, null, 0)
+    }
+
+    fun setMenu(@MenuRes menuId: Int, attrs: AttributeSet? = null, defStyleAttr: Int = 0) {
+        generateEdgeFabs(menuId, attrs, defStyleAttr)
+        initializeStartConstraints()
+    }
     /**
      * Inflate edge FABs from a menu resource and add them as children.
      */

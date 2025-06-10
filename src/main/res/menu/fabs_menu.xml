@@ -3,7 +3,7 @@
     <item
         android:id="@+id/fab_record"
         android:icon="@drawable/icon_capture_start"
-        android:title="Kayıt"/>
+        android:title="Record"/>
     <item
         android:id="@+id/fab_brush"
         android:icon="@drawable/icon_brush"

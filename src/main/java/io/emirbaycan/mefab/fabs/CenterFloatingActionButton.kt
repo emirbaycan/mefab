@@ -46,7 +46,7 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
     init {
         id = R.id.center_fab
         isClickable = true
-        compatElevation = 0f
+        compatElevation = 9f
 
         val sizePx = (56 * context.resources.displayMetrics.density).toInt()
         layoutParams = ConstraintLayout.LayoutParams(sizePx, sizePx)

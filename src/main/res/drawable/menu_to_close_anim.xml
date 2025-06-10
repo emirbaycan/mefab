@@ -13,7 +13,7 @@
                 android:pivotY="12">
                 <path
                     android:name="menu"
-                    android:fillColor="#000000"
+                    android:fillColor="@color/colorIcon"
                     android:pathData="M 3 18 L 5.25 18 L 12 18 L 14.25 18 L 21 18 L 21 16 L 14.743 16 L 13.543 16 L 9.943 16 L 6.686 16 L 3 16 L 3 18 L 3 18 M 3 13 L 3 11 L 21 11 L 21 13 L 3 13 L 3 13 M 3 6 L 21 6 L 21 8 L 3 8 L 3 6 L 3 6" />
             </group>
         </vector>

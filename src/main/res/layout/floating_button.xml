@@ -26,6 +26,7 @@
         android:focusable="true"
         android:clipChildren="false"
         android:clipToPadding="false"
-        app:edges="@menu/fabs_menu" />
+        app:edges="@menu/fabs_menu"
+        app:backgroundTint="@color/colorIconBackground"/>
 
 </io.emirbaycan.mefab.view.PassThroughLayout>

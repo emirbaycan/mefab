@@ -2,11 +2,13 @@ package io.emirbaycan.mefab
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.View
 import android.widget.PopupMenu
 import androidx.annotation.MenuRes
 import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.forEach
@@ -100,6 +102,8 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
         if (size > 4) throwNumberOfItemsItemsException(size)
 
         val ids = mutableListOf<Int>()
+        val backgroundColor = ContextCompat.getColor(context, R.color.colorIconBackground)
+
         popupMenu.menu.forEach { menuItem ->
             val edgeFab = EdgeFloatingActionButton(context, attrs, defStyleAttr)
             edgeFab.setImageDrawable(menuItem.icon)
@@ -114,6 +118,7 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
                 topToTop = this@MovableExpandedFloatingActionButton.id
                 bottomToBottom = this@MovableExpandedFloatingActionButton.id
             }
+            edgeFab.backgroundTintList = ColorStateList.valueOf(backgroundColor)
             addView(edgeFab) // <-- önce ekle
             edgeFab.bringToFront()
 

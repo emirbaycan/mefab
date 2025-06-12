@@ -15,6 +15,7 @@ import io.emirbaycan.mefab.enums.Position
 import io.emirbaycan.mefab.enums.State
 import io.emirbaycan.mefab.interfaces.Communicator
 import io.emirbaycan.mefab.utils.FloatingFabOverlayManager
+import io.emirbaycan.mefab.utils.Separators
 import io.emirbaycan.mefab.utils.getSeparators
 
 /**
@@ -77,7 +78,7 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
         state = state.inverse()
         FloatingFabOverlayManager.resizeOverlay(state == State.EXPANDED)
         updateIconAnimation()
-        communicator.onCenterFabPositionChange(getCenterFabPositionOnScreen())
+        communicator.onCenterFabPositionChange(getFabPositionOnScreen())
     }
 
     /**
@@ -111,27 +112,49 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
      * Returns the appropriate Position enum.
      * Throws if position is ambiguous (should never happen).
      */
-    fun getCenterFabPositionOnScreen(): Position {
+    public fun getFabPositionOnScreen(): Position {
         val location = IntArray(2)
         getLocationOnScreen(location)
-        val x = location[0] + motionLayout.width / 2
-        val y = location[1] + motionLayout.height / 2
+
+        val fabLeft = location[0]
+        val fabTop = location[1]
+        val fabRight = fabLeft + width
+        val fabBottom = fabTop + height
+
+        // X ve Y ekseni için her 3 alanı kontrol et: sol, orta, sağ ve üst, orta, alt
+        fun inRange(range: IntRange, vararg values: Int) = values.any { it in range }
+
+        val xZone = when {
+            inRange(separators.borderToX1Rang, fabLeft, fabRight) -> "LEFT"
+            inRange(separators.x1ToX2Range, fabLeft, fabRight)    -> "CENTER"
+            inRange(separators.x2ToBorderRange, fabLeft, fabRight) -> "RIGHT"
+            else -> "UNDEFINED"
+        }
+
+        val yZone = when {
+            inRange(separators.borderToY1Rang, fabTop, fabBottom) -> "TOP"
+            inRange(separators.y1ToY2Range, fabTop, fabBottom)    -> "CENTER"
+            inRange(separators.y2ToBorderRange, fabTop, fabBottom) -> "BOTTOM"
+            else -> "UNDEFINED"
+        }
 
         return when {
-            y in separators.borderToY1Rang && x in separators.borderToX1Rang     -> Position.TOP_LEFT
-            y in separators.borderToY1Rang && x in separators.x1ToX2Range        -> Position.TOP_CENTER
-            y in separators.borderToY1Rang && x in separators.x2ToBorderRange    -> Position.TOP_RIGHT
+            xZone == "LEFT" && yZone == "TOP" -> Position.TOP_LEFT
+            xZone == "CENTER" && yZone == "TOP" -> Position.TOP_CENTER
+            xZone == "RIGHT" && yZone == "TOP" -> Position.TOP_RIGHT
 
-            y in separators.y1ToY2Range && x in separators.borderToX1Rang        -> Position.CENTER_LEFT
-            y in separators.y1ToY2Range && x in separators.x1ToX2Range           -> Position.CENTER
-            y in separators.y1ToY2Range && x in separators.x2ToBorderRange       -> Position.CENTER_RIGHT
+            xZone == "LEFT" && yZone == "CENTER" -> Position.CENTER_LEFT
+            xZone == "CENTER" && yZone == "CENTER" -> Position.CENTER
+            xZone == "RIGHT" && yZone == "CENTER" -> Position.CENTER_RIGHT
 
-            y in separators.y2ToBorderRange && x in separators.borderToX1Rang    -> Position.BOTTOM_LEFT
-            y in separators.y2ToBorderRange && x in separators.x1ToX2Range       -> Position.BOTTOM_CENTER
-            y in separators.y2ToBorderRange && x in separators.x2ToBorderRange   -> Position.BOTTOM_RIGHT
+            xZone == "LEFT" && yZone == "BOTTOM" -> Position.BOTTOM_LEFT
+            xZone == "CENTER" && yZone == "BOTTOM" -> Position.BOTTOM_CENTER
+            xZone == "RIGHT" && yZone == "BOTTOM" -> Position.BOTTOM_RIGHT
+
             else -> Position.UNDEFINED
         }
     }
+
 
     /**
      * Return current FAB state (useful for persistence).

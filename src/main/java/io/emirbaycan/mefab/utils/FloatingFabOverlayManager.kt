@@ -170,7 +170,7 @@ public object FloatingFabOverlayManager {
 
                         // Optionally: update FAB position state for menu fanning
                         (centerFab as? CenterFloatingActionButton)?.communicator?.onCenterFabPositionChange(
-                            centerFab.getCenterFabPositionOnScreen()
+                            centerFab.getFabPositionOnScreen()
                         )
                     }
                     true

@@ -3,6 +3,7 @@ package io.emirbaycan.mefab
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.PopupMenu
 import androidx.annotation.MenuRes
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -36,7 +37,7 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
     private var edgeFabClickListener: OnEdgeFabClickListener? = null
 
     // IDs of edge FABs (derived from provided menu resource)
-    private lateinit var edgeFabIds: List<Int>
+    public lateinit var edgeFabIds: List<Int>
 
     // Should the menu close automatically after an edge FAB is clicked
     private var closeAfterEdgeFabClick by Delegates.notNull<Boolean>()
@@ -71,6 +72,7 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
             loadLayoutDescription(R.xml.scene)
             initializeStartConstraints()
         }
+
     }
 
     /**
@@ -80,11 +82,11 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
         this.edgeFabClickListener = listener
     }
 
-    fun setMenu(@MenuRes menuId: Int) {
+    public fun setMenu(@MenuRes menuId: Int) {
         setMenu(menuId, null, 0)
     }
 
-    fun setMenu(@MenuRes menuId: Int, attrs: AttributeSet? = null, defStyleAttr: Int = 0) {
+    public fun setMenu(@MenuRes menuId: Int, attrs: AttributeSet? = null, defStyleAttr: Int = 0) {
         generateEdgeFabs(menuId, attrs, defStyleAttr)
         initializeStartConstraints()
     }
@@ -99,22 +101,28 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
 
         val ids = mutableListOf<Int>()
         popupMenu.menu.forEach { menuItem ->
-            val edgeFab = EdgeFloatingActionButton(context, attrs, defStyleAttr).apply {
-                setImageDrawable(menuItem.icon)
-                id = menuItem.itemId
-                ids.add(menuItem.itemId)
-                layoutParams = LayoutParams(
-                    LayoutParams.WRAP_CONTENT,
-                    LayoutParams.WRAP_CONTENT
-                ).apply {
-                    startToStart = this@MovableExpandedFloatingActionButton.id
-                    endToEnd = this@MovableExpandedFloatingActionButton.id
-                    topToTop = this@MovableExpandedFloatingActionButton.id
-                    bottomToBottom = this@MovableExpandedFloatingActionButton.id
-                }
+            val edgeFab = EdgeFloatingActionButton(context, attrs, defStyleAttr)
+            edgeFab.setImageDrawable(menuItem.icon)
+            edgeFab.id = menuItem.itemId
+            ids.add(menuItem.itemId)
+            edgeFab.layoutParams = LayoutParams(
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT
+            ).apply {
+                startToStart = this@MovableExpandedFloatingActionButton.id
+                endToEnd = this@MovableExpandedFloatingActionButton.id
+                topToTop = this@MovableExpandedFloatingActionButton.id
+                bottomToBottom = this@MovableExpandedFloatingActionButton.id
             }
-            addView(edgeFab)
+            addView(edgeFab) // <-- önce ekle
+            edgeFab.bringToFront()
+
+            // Sonra listener ekle (artık parent ve id doğru)
+            edgeFab.setOnClickListener {
+                this@MovableExpandedFloatingActionButton.onEdgeFabClick(menuItem.itemId)
+            }
         }
+
         edgeFabIds = ids
     }
 

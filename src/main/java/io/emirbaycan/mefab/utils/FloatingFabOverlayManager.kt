@@ -71,9 +71,7 @@ public object FloatingFabOverlayManager {
         val params = WindowManager.LayoutParams(
             (56 * dp).toInt(),
             (56 * dp).toInt(),
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-            else WindowManager.LayoutParams.TYPE_PHONE,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or
                     WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,

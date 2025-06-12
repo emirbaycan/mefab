@@ -46,7 +46,7 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
     init {
         id = R.id.center_fab
         isClickable = true
-        compatElevation = 9f
+        compatElevation = 7f
 
         val sizePx = (56 * context.resources.displayMetrics.density).toInt()
         layoutParams = ConstraintLayout.LayoutParams(sizePx, sizePx)
@@ -73,7 +73,7 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
      * Toggles between open/closed state, resizes overlay, animates icon,
      * and notifies Communicator of new position.
      */
-    public fun toggleState() {
+    fun toggleState() {
         state = state.inverse()
         FloatingFabOverlayManager.resizeOverlay(state == State.EXPANDED)
         updateIconAnimation()
@@ -129,7 +129,7 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
             y in separators.y2ToBorderRange && x in separators.borderToX1Rang    -> Position.BOTTOM_LEFT
             y in separators.y2ToBorderRange && x in separators.x1ToX2Range       -> Position.BOTTOM_CENTER
             y in separators.y2ToBorderRange && x in separators.x2ToBorderRange   -> Position.BOTTOM_RIGHT
-            else -> throw IllegalStateException("Cannot determine center FAB position for (x=$x, y=$y)")
+            else -> Position.CENTER
         }
     }
 

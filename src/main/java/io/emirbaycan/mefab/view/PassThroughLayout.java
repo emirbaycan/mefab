@@ -3,6 +3,7 @@ package io.emirbaycan.mefab.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import io.emirbaycan.mefab.fabs.CenterFloatingActionButton;
@@ -32,7 +33,10 @@ public class PassThroughLayout extends FrameLayout {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return false;
     }
-
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event){
+        return super.dispatchTouchEvent(event);
+    }
     /**
      * If the FAB menu is expanded and user taps background, intercept and handle collapse.
      * (TODO: Uncomment centerFab.performClick() to enable collapse on outside touch.)
@@ -40,11 +44,7 @@ public class PassThroughLayout extends FrameLayout {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // Optionally collapse FAB menu on background tap:
-        // centerFab.performClick();
-        return centerFab != null
-                && centerFab.getCurrentState() == State.EXPANDED
-                && event.getAction() == MotionEvent.ACTION_DOWN;
+        return super.onTouchEvent(event);
     }
 
 }

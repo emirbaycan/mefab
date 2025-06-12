@@ -38,8 +38,7 @@ implementation 'io.github.emirbaycan:mefab:1.0.4'
     android:id="@+id/me_fab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:edges="@menu/fabs_menu" <!-- Your menu resource -->
-/>
+    app:edges="@menu/fabs_menu"/>
 ```
 
 ### Programmatically

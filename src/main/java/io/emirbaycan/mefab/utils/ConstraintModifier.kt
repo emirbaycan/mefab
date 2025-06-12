@@ -48,6 +48,7 @@ internal fun ConstraintSet.setNewConstraints(viewId: Int, parentId: Int, positio
         Position.BOTTOM_LEFT   -> constraintBottomLeft(viewId, parentId)
         Position.BOTTOM_CENTER -> constraintBottomCenter(viewId, parentId)
         Position.BOTTOM_RIGHT  -> constraintBottomRight(viewId, parentId)
+        Position.UNDEFINED -> false
     }
 }
 

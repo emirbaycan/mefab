@@ -155,6 +155,7 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
                 Position.BOTTOM_RIGHT  -> constraintSet.setFanForViews(edgeFabIds, this.id, 270f, 360f, radius)
                 Position.BOTTOM_CENTER -> constraintSet.setFanForViews(edgeFabIds, this.id, 270f, 450f, radius)
                 Position.BOTTOM_LEFT   -> constraintSet.setFanForViews(edgeFabIds, this.id, 360f, 450f, radius)
+                Position.UNDEFINED -> false
             }
             constraintSet.applyTo(this)
         }

@@ -129,7 +129,7 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
             y in separators.y2ToBorderRange && x in separators.borderToX1Rang    -> Position.BOTTOM_LEFT
             y in separators.y2ToBorderRange && x in separators.x1ToX2Range       -> Position.BOTTOM_CENTER
             y in separators.y2ToBorderRange && x in separators.x2ToBorderRange   -> Position.BOTTOM_RIGHT
-            else -> Position.CENTER
+            else -> Position.UNDEFINED
         }
     }
 

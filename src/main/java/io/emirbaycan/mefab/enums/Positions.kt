@@ -18,4 +18,5 @@ public enum class Position {
     BOTTOM_RIGHT,
     BOTTOM_CENTER,
     BOTTOM_LEFT,
+    UNDEFINED
 }

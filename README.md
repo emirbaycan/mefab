@@ -3,35 +3,35 @@
 [![GitHub stars](https://img.shields.io/github/stars/emirbaycan/mefab.svg?style=flat-square)](https://github.com/emirbaycan/mefab/stargazers)
 [![GitHub license](https://img.shields.io/github/license/emirbaycan/mefab.svg?style=flat-square)](https://github.com/emirbaycan/mefab/blob/main/LICENSE)
 
-Modern ve özelleştirilebilir **Floating Action Button (FAB) Overlay** Android kütüphanesi.
-Yalnızca **import** edilerek, projelere hızlıca entegre edilebilir.
+A modern and customizable **Floating Action Button (FAB) Overlay** library for Android.
+Designed to be imported and integrated quickly into your projects.
 
 ---
 
-## Özellikler
+## Features
 
-* Hızlı entegrasyon
-* Modern, şık ve dinamik FAB overlay tasarımı
-* Sürükle-bırak (drag & drop) desteği
-* Minimum bağımlılık, sade kurulum
+* Easy and fast integration
+* Modern, sleek, and dynamic FAB overlay design
+* Drag & drop support
+* Minimal dependencies, lightweight setup
 
 ---
 
-## Kurulum
+## Installation
 
-### 1. Modülü Projene Ekle
+### 1. Add the Module to Your Project
 
-Bu kütüphaneyi doğrudan import ederek kullanabilirsin.
+Import this library directly into your project.
 
-**A. Projeye klonla:**
+**A. Clone the repository:**
 
 ```bash
 git clone https://github.com/emirbaycan/mefab.git
 ```
 
-veya
+or
 
-**B. Git Submodule olarak ekle:**
+**B. Add as a Git submodule:**
 
 ```bash
 git submodule add https://github.com/emirbaycan/mefab.git
@@ -39,9 +39,9 @@ git submodule add https://github.com/emirbaycan/mefab.git
 
 ---
 
-### 2. build.gradle Dosyana Eklemeler
+### 2. Add to build.gradle
 
-`settings.gradle` veya proje seviyesindeki `build.gradle` dosyanızda modülü ekleyin.
+In your `settings.gradle` or the project-level `build.gradle`, include the module:
 
 ```gradle
 include ':mefab'
@@ -50,9 +50,9 @@ project(':mefab').projectDir = new File(rootDir, 'mefab')
 
 ---
 
-### 3. Modülü Uygulama İçine Dahil Et
+### 3. Add as a Dependency
 
-`app/build.gradle` dosyanıza aşağıdaki satırı ekleyin:
+In your `app/build.gradle` file, add:
 
 ```gradle
 implementation project(':mefab')
@@ -60,39 +60,83 @@ implementation project(':mefab')
 
 ---
 
-## Kullanım
+## Usage
 
-Temel kullanım örneği:
+### Quick Example
+
+Add the following code in your Activity to show the FAB overlay and set up menu actions:
 
 ```java
-import com.nux.screenrecorder.overlay.Overlay;
-
-// Örneğin bir Activity içinde:
-Overlay overlay = new Overlay(this);
-overlay.show();
+private void setupFabOverlay() {
+    io.emirbaycan.mefab.utils.FloatingFabOverlayManager.INSTANCE.showOverlay(this);
+    MovableExpandedFloatingActionButton fabOverlay =
+            io.emirbaycan.mefab.utils.FloatingFabOverlayManager.INSTANCE.getFabView();
+    if (fabOverlay != null) {
+        fabOverlay.setMenu(R.menu.fabs_menu); // Attach your menu XML
+        fabOverlay.setOnEdgeFabClickListener(new OnEdgeFabClickListener(fabId -> {
+            Log.d("EdgeFab", "Clicked FAB id=" + fabId);
+            if (fabId == R.id.fab_record) {
+                // Your record action
+            } else if (fabId == R.id.fab_screenshot) {
+                // Your screenshot action
+            } else if (fabId == R.id.fab_brush) {
+                // Your brush action
+            } else if (fabId == R.id.fab_live) {
+                // Your live action
+            }
+            return null;
+        }));
+    }
+}
 ```
 
-Daha fazla detay ve örnek için [docs/usage.md](docs/usage.md) dosyasına göz atabilirsin.
-(Dokümantasyon geliştiriliyor)
+#### Example menu (res/menu/fabs\_menu.xml)
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fab_record"
+        android:icon="@drawable/icon_record_start"
+        android:title="Record" />
+    <item
+        android:id="@+id/fab_brush"
+        android:icon="@drawable/icon_brush"
+        android:title="Brush"/>
+    <item
+        android:id="@+id/fab_screenshot"
+        android:icon="@drawable/btn_screenshot"
+        android:title="Screenshot"/>
+    <item
+        android:id="@+id/fab_live"
+        android:icon="@drawable/icon_live"
+        android:title="Live"/>
+</menu>
+```
+
+* **Note:** You must create the appropriate menu XML file in your `res/menu` directory, and provide the required drawable resources.
+
+For more details and advanced usage, see [docs/usage.md](docs/usage.md).
+(Documentation is being developed)
 
 ---
 
-## Geliştirici Notları
+## Developer Notes
 
-* Android min SDK: **21**
-* Overlay için gerekli izinleri (SYSTEM\_ALERT\_WINDOW vb.) tanımlamayı unutmayın.
-* Kütüphane doğrudan uygulama içinde açılıp kapatılabilir, dışa bağımlılığı yoktur.
-* Hataları veya geliştirme taleplerini Issues kısmından bildirebilirsiniz.
-
----
-
-## Katkıda Bulunanlar
-
-Katkı yapmak için PR gönderebilir veya [Issues](https://github.com/emirbaycan/mefab/issues) üzerinden görüşlerinizi paylaşabilirsiniz.
+* Minimum Android SDK: **21**
+* Make sure to request the necessary permissions (such as SYSTEM\_ALERT\_WINDOW) for overlays.
+* The library can be opened and closed directly within your app, no external dependencies required.
+* Please report bugs or feature requests in the Issues section.
 
 ---
 
-## Lisans
+## Contributing
+
+You can contribute by submitting a PR or sharing your suggestions in the [Issues](https://github.com/emirbaycan/mefab/issues) section.
+
+---
+
+## License
 
 [MIT License](LICENSE)
 

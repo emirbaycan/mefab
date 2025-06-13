@@ -1,98 +1,99 @@
-# mefab
+# MeFab
 
-A modern, customizable Floating Action Button (FAB) menu library for Android, supporting drag, overlay, and expandable multi-action layouts.
+[![GitHub stars](https://img.shields.io/github/stars/emirbaycan/mefab.svg?style=flat-square)](https://github.com/emirbaycan/mefab/stargazers)
+[![GitHub license](https://img.shields.io/github/license/emirbaycan/mefab.svg?style=flat-square)](https://github.com/emirbaycan/mefab/blob/main/LICENSE)
 
-[![Android](https://img.shields.io/badge/platform-Android-green.svg)](https://developer.android.com/)
-[![License](https://img.shields.io/github/license/emirbaycan/mefab)](LICENSE)
-
----
-
-## Features
-
-* 🟢 **Expandable FAB**: Fan-style or edge menu support
-* 🟢 **Drag & Overlay**: Can float above any app, or be embedded in your layout
-* 🟢 **Custom Icons**: Default and custom icons supported
-* 🟢 **Smooth Animations**: Expand/collapse with vector drawable support
-* 🟢 **Modular & Lightweight**: Library-first, dependency-light
+Modern ve özelleştirilebilir **Floating Action Button (FAB) Overlay** Android kütüphanesi.
+Yalnızca **import** edilerek, projelere hızlıca entegre edilebilir.
 
 ---
 
-## Installation
+## Özellikler
 
-Add to your `build.gradle` (Module) file:
+* Hızlı entegrasyon
+* Modern, şık ve dinamik FAB overlay tasarımı
+* Sürükle-bırak (drag & drop) desteği
+* Minimum bağımlılık, sade kurulum
 
-```groovy
-implementation 'io.github.emirbaycan:mefab:1.0.4'
+---
+
+## Kurulum
+
+### 1. Modülü Projene Ekle
+
+Bu kütüphaneyi doğrudan import ederek kullanabilirsin.
+
+**A. Projeye klonla:**
+
+```bash
+git clone https://github.com/emirbaycan/mefab.git
 ```
 
-> **Note:** Library is compatible with Android API 23+.
+veya
 
----
+**B. Git Submodule olarak ekle:**
 
-## Usage
-
-### XML
-
-```xml
-<io.emirbaycan.mefab.MovableExpandedFloatingActionButton
-    android:id="@+id/me_fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:edges="@menu/fabs_menu"/>
+```bash
+git submodule add https://github.com/emirbaycan/mefab.git
 ```
 
-### Programmatically
+---
 
-```kotlin
-FloatingFabOverlayManager.showOverlay(context)
+### 2. build.gradle Dosyana Eklemeler
+
+`settings.gradle` veya proje seviyesindeki `build.gradle` dosyanızda modülü ekleyin.
+
+```gradle
+include ':mefab'
+project(':mefab').projectDir = new File(rootDir, 'mefab')
 ```
 
-### Overlay Mode
-
-For "system overlay" (floating above all apps), request the `SYSTEM_ALERT_WINDOW` permission and use `FloatingFabOverlayManager`.
-
 ---
 
-## Demo
+### 3. Modülü Uygulama İçine Dahil Et
 
-<img src="https://raw.githubusercontent.com/emirbaycan/mefab/main/screenshots/showcase.gif" width="300"/>
+`app/build.gradle` dosyanıza aşağıdaki satırı ekleyin:
 
----
-
-## Testing
-
-Run instrumented UI tests via Android Studio or CLI:
-
-```sh
-./gradlew connectedAndroidTest
+```gradle
+implementation project(':mefab')
 ```
 
-or run `FabOverlayInstrumentedTest` for overlay integration test.
+---
+
+## Kullanım
+
+Temel kullanım örneği:
+
+```java
+import com.nux.screenrecorder.overlay.Overlay;
+
+// Örneğin bir Activity içinde:
+Overlay overlay = new Overlay(this);
+overlay.show();
+```
+
+Daha fazla detay ve örnek için [docs/usage.md](docs/usage.md) dosyasına göz atabilirsin.
+(Dokümantasyon geliştiriliyor)
 
 ---
 
-## Contributing
+## Geliştirici Notları
 
-Pull requests and issues are welcome!
-Please open an issue for suggestions or bugs.
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+* Android min SDK: **21**
+* Overlay için gerekli izinleri (SYSTEM\_ALERT\_WINDOW vb.) tanımlamayı unutmayın.
+* Kütüphane doğrudan uygulama içinde açılıp kapatılabilir, dışa bağımlılığı yoktur.
+* Hataları veya geliştirme taleplerini Issues kısmından bildirebilirsiniz.
 
 ---
 
-## Author
+## Katkıda Bulunanlar
 
-* Emir Baycan [@emirbaycan](https://github.com/emirbaycan)
+Katkı yapmak için PR gönderebilir veya [Issues](https://github.com/emirbaycan/mefab/issues) üzerinden görüşlerinizi paylaşabilirsiniz.
 
 ---
 
-## Advanced
+## Lisans
 
-* **Customizing fan angles, edges, and overlay behaviors:** See Wiki (coming soon).
-* **Want to publish your own version?** Fork and edit the `ext` Gradle variables.
+[MIT License](LICENSE)
 
 ---

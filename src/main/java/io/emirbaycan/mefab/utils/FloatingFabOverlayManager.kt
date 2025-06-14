@@ -41,6 +41,8 @@ public object FloatingFabOverlayManager {
     /** WindowManager.LayoutParams for current overlay view. */
     public var overlayLayoutParams: WindowManager.LayoutParams? = null
         private set
+    private var savedOverlayX: Int? = null
+    private var savedOverlayY: Int? = null
 
     /**
      * Returns the MovableExpandedFloatingActionButton instance if overlay is visible.
@@ -229,5 +231,9 @@ public object FloatingFabOverlayManager {
             fab = null
             windowManager = null
         }
+    }
+
+    public fun setOverlayVisibility(visible: Boolean) {
+        overlayView?.visibility = if (visible) View.VISIBLE else View.GONE
     }
 }
